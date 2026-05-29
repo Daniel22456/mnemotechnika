@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL tables</title>
+</head>
+<body>
+<pre>
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(80) UNIQUE NOT NULL,
+    email VARCHAR(120) UNIQUE NOT NULL,
+    password_hash VARCHAR(200) NOT NULL,
+    role VARCHAR(20) DEFAULT 'student',
+    created_at DATETIME,
+    is_active BOOLEAN DEFAULT 1
+);
+
+CREATE TABLE feedback (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    student_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    message TEXT NOT NULL,
+    rating INTEGER,
+    created_at DATETIME,
+    is_read BOOLEAN DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+</pre>
+</body>
+</html>
